@@ -20,7 +20,7 @@ module OpenBD
         if bibliographes.size == 1
           bibliographes[0]
         else
-          bibliographes
+          bibliographes.select { |item| item != nil }
         end
       end
 
