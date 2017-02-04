@@ -3,7 +3,7 @@ require 'net/http'
 require 'json'
 
 module OpenBD
-  BASE = "http://api.openbd.jp/".freeze
+  API_BASE_URL = "http://api.openbd.jp/".freeze
   class V1
     VERSION = "v1".freeze
 
@@ -50,9 +50,9 @@ module OpenBD
         options.each do |key, val|
           params << "#{key}=#{val}"
         end
-        "#{BASE}#{version}/#{method}?#{params}"
+        "#{API_BASE_URL}#{version}/#{method}?#{params}"
       else
-        "#{BASE}#{version}/#{method}"
+        "#{API_BASE_URL}#{version}/#{method}"
       end
     end
   end
