@@ -10,7 +10,7 @@ module OpenBD
     class << self
       def coverage
         body = send_request(VERSION, 'coverage')
-        return_JSON.parse body
+        JSON.parse body
       end
 
       def get(options)
@@ -22,6 +22,11 @@ module OpenBD
         else
           bibliographes
         end
+      end
+
+      def schema
+        body = send_request(VERSION, 'schema')
+        JSON.parse body
       end
     end
 
