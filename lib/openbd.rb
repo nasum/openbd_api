@@ -1,11 +1,11 @@
-require "openbd/version"
+require 'openbd/version'
 require 'net/http'
 require 'json'
 
 module OpenBD
-  API_BASE_URL = "http://api.openbd.jp/".freeze
+  API_BASE_URL = 'http://api.openbd.jp/'.freeze
   class V1
-    VERSION = "v1".freeze
+    VERSION = 'v1'.freeze
 
     class << self
       def coverage
@@ -46,7 +46,7 @@ module OpenBD
 
     def self.prepare_url(version, method, options)
       if options
-        params = ""
+        params = ''
         options.each do |key, val|
           params << "#{key}=#{val}"
         end
