@@ -9,18 +9,20 @@ module OpenBD
     class << self
       def coverage
         request_url = prepare_url('coverage')
-        body = fetch_request request_url
-        JSON.parse body
+        body = send_request request_url
+        return_JSON.parse body
       end
 
       def get(options)
         request_url = prepare_url('get', options)
-        body = fetch_request request_url
-        JSON.parse body
-      end
+        body = send_request request_url
+        bibliographes = JSON.parse body
 
-      def bulk_get(options)
-        # TODO
+        if bibliographes.size == 1
+          bibliographes[0]
+        else
+          bibliographes
+        end
       end
     end
 
@@ -31,7 +33,7 @@ module OpenBD
       puts s
     end
 
-    def self.fetch_request(request_url)
+    def self.send_request(request_url)
       log("Request URL: #{request_url}")
       response = Net::HTTP.get_response(URI::parse(request_url))
       body = response.body
