@@ -9,14 +9,12 @@ module OpenBD
 
     class << self
       def coverage
-        request_url = prepare_url(VERSION, 'coverage')
-        body = send_request request_url
+        body = send_request(VERSION, 'coverage')
         return_JSON.parse body
       end
 
       def get(options)
-        request_url = prepare_url(VERSION, 'get', options)
-        body = send_request request_url
+        body = send_request(VERSION, 'get', options)
         bibliographes = JSON.parse body
 
         if bibliographes.size == 1
@@ -34,13 +32,14 @@ module OpenBD
       puts s
     end
 
-    def self.send_request(request_url)
+    def self.send_request(version, method, options = nil)
+      request_url = prepare_url(version, method, options)
       log("Request URL: #{request_url}")
       response = Net::HTTP.get_response(URI::parse(request_url))
       body = response.body
     end
 
-    def self.prepare_url(version, method, options = nil)
+    def self.prepare_url(version, method, options)
       if options
         params = ""
         options.each do |key, val|
