@@ -2,7 +2,7 @@ require 'openbd/version'
 require 'net/http'
 require 'json'
 
-module OpenBD
+class OpenBD
   API_BASE_URL = 'http://api.openbd.jp/v1/'.freeze
 
   class << self
@@ -22,35 +22,46 @@ module OpenBD
       end
     end
 
+    def bulk_get(isbns)
+      request_url = prepare_url('get')
+      request = Net::HTTP::Post.new(URI::parse(request_url))
+      request.body = isbns
+
+      http = Net::HTTP.new(request_url)
+      response = http.request(request)
+
+      JSON.parse response.body
+    end
+
     def schema
       body = send_request('schema')
       JSON.parse body
     end
+  end
 
-    private
+  private
 
-    # TODO more smart
-    def self.log(s)
-      puts s
-    end
+  # TODO more smart
+  def self.log(s)
+    puts s
+  end
 
-    def self.send_request(method, options = nil)
-      request_url = prepare_url(method, options)
-      log("Request URL: #{request_url}")
-      response = Net::HTTP.get_response(URI::parse(request_url))
-      body = response.body
-    end
+  def self.send_request(method, options = nil)
+    request_url = prepare_url(method, options)
+    log("Request URL: #{request_url}")
+    response = Net::HTTP.get_response(URI::parse(request_url))
+    body = response.body
+  end
 
-    def self.prepare_url(method, options)
-      if options
-        params = ''
-        options.each do |key, val|
-          params << "#{key}=#{val}"
-        end
-        "#{API_BASE_URL}#{method}?#{params}"
-      else
-        "#{API_BASE_URL}#{method}"
+  def self.prepare_url(method, options = nil)
+    if options
+      params = ''
+      options.each do |key, val|
+        params << "#{key}=#{val}"
       end
+      "#{API_BASE_URL}#{method}?#{params}"
+    else
+      "#{API_BASE_URL}#{method}"
     end
   end
 end
