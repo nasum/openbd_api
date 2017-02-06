@@ -29,20 +29,25 @@ class OpenBD
       response = Net::HTTP.get_response(URI::parse(request_url))
       create_body(response)
     end
-  end
 
-  private
+    def create_body(response)
+      JSON.parse response.body
+    end
 
-  def self.create_body(response)
-    JSON.parse response.body
-  end
-
-  def self.prepare_url(method, isbns = nil)
-    if isbns
-      params = "isbn=#{isbns}"
-      "#{API_BASE_URL}#{method}?#{params}"
-    else
-      "#{API_BASE_URL}#{method}"
+    def prepare_url(method, isbns = nil)
+      if isbns.kind_of? String
+        params = "isbn=#{isbns}"
+        "#{API_BASE_URL}#{method}?#{params}"
+      elsif isbns.kind_of? Array
+        params = "isbn="
+        isbns.each do |isbn|
+          params << "#{isbn}, "
+        end
+        params.strip!.gsub!(/,$/,'')
+        "#{API_BASE_URL}#{method}?#{params}"
+      else
+        "#{API_BASE_URL}#{method}"
+      end
     end
   end
 end

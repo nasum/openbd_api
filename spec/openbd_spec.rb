@@ -5,7 +5,37 @@ RSpec.describe Openbd do
     expect(Openbd::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  describe 'prepare_url' do
+    context 'get method no isbn' do
+      it do
+        expect(OpenBD.prepare_url('get')).to eq "http://api.openbd.jp/v1/get"
+      end
+    end
+    context 'get method single isbn' do
+      it do
+        expect(OpenBD.prepare_url('get', '9784990304645')).to eq "http://api.openbd.jp/v1/get?isbn=9784990304645"
+      end
+    end
+    context 'get method multi isbn' do
+      it do
+        expect(OpenBD.prepare_url('get', '9784990304645, 9784990304646')).to eq "http://api.openbd.jp/v1/get?isbn=9784990304645, 9784990304646"
+      end
+    end
+    context 'get method multi isbn use array' do
+      it do
+        expect(OpenBD.prepare_url('get', ['9784990304645', '9784990304646'])).to eq "http://api.openbd.jp/v1/get?isbn=9784990304645, 9784990304646"
+      end
+    end
+    context 'coverage method' do
+      it do
+        expect(OpenBD.prepare_url('coverage')).to eq "http://api.openbd.jp/v1/coverage"
+      end
+    end
+
+    context 'schema method' do
+      it do
+        expect(OpenBD.prepare_url('schema')).to eq "http://api.openbd.jp/v1/schema"
+      end
+    end
   end
 end

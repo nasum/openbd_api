@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "openbd"
+require "openbd_api"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
