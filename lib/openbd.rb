@@ -14,9 +14,9 @@ class OpenBD
       create_body(send_request('get', options)).select { |item| item != nil }
     end
 
-    def bulk_get(isbns)
+    def bulk_get(options)
       request_url = prepare_url('get')
-      response = Net::HTTP.post_form(URI::parse(request_url), isbn: isbns)
+      response = Net::HTTP.post_form(URI::parse(request_url), options)
       create_body(response.body).select { |item| item != nil }
     end
 
