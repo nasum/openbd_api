@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'openbd/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "openbd"
+  spec.name          = "openbd_api"
   spec.version       = Openbd::VERSION
   spec.authors       = ["nasum"]
   spec.email         = ["tomato.wonder.life@gmail.com"]
