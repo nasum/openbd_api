@@ -3,31 +3,28 @@ require 'net/http'
 require 'json'
 
 module OpenBD
-  API_BASE_URL = 'http://api.openbd.jp/'.freeze
-  class V1
-    VERSION = 'v1'.freeze
+  API_BASE_URL = 'http://api.openbd.jp/v1/'.freeze
 
-    class << self
-      def coverage
-        body = send_request(VERSION, 'coverage')
-        JSON.parse body
+  class << self
+    def coverage
+      body = send_request(VERSION, 'coverage')
+      JSON.parse body
+    end
+
+    def get(options)
+      body = send_request(VERSION, 'get', options)
+      bibliographes = JSON.parse body
+
+      if bibliographes.size == 1
+        bibliographes[0]
+      else
+        bibliographes.select { |item| item != nil }
       end
+    end
 
-      def get(options)
-        body = send_request(VERSION, 'get', options)
-        bibliographes = JSON.parse body
-
-        if bibliographes.size == 1
-          bibliographes[0]
-        else
-          bibliographes.select { |item| item != nil }
-        end
-      end
-
-      def schema
-        body = send_request(VERSION, 'schema')
-        JSON.parse body
-      end
+    def schema
+      body = send_request(VERSION, 'schema')
+      JSON.parse body
     end
 
     private
@@ -50,9 +47,9 @@ module OpenBD
         options.each do |key, val|
           params << "#{key}=#{val}"
         end
-        "#{API_BASE_URL}#{version}/#{method}?#{params}"
+        "#{API_BASE_URL}#{method}?#{params}"
       else
-        "#{API_BASE_URL}#{version}/#{method}"
+        "#{API_BASE_URL}#{method}"
       end
     end
   end
