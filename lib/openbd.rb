@@ -7,48 +7,32 @@ class OpenBD
 
   class << self
     def coverage
-      body = send_request('coverage')
-      JSON.parse body
+      create_body(send_request('coverage'))
     end
 
     def get(options)
-      body = send_request('get', options)
-      bibliographes = JSON.parse body
-
-      if bibliographes.size == 1
-        bibliographes[0]
-      else
-        bibliographes.select { |item| item != nil }
-      end
+      create_body(send_request('get', options)).select { |item| item != nil }
     end
 
     def bulk_get(isbns)
       request_url = prepare_url('get')
-      request = Net::HTTP::Post.new(URI::parse(request_url))
-      request.body = isbns
-
-      http = Net::HTTP.new(request_url)
-      response = http.request(request)
-
-      JSON.parse response.body
+      response = Net::HTTP.post_form(URI::parse(request_url), isbn: isbns)
+      create_body(response.body).select { |item| item != nil }
     end
 
     def schema
-      body = send_request('schema')
-      JSON.parse body
+      create_body(send_request('schema'))
     end
   end
 
   private
 
-  # TODO more smart
-  def self.log(s)
-    puts s
+  def self.create_body(body)
+    JSON.parse body
   end
 
   def self.send_request(method, options = nil)
     request_url = prepare_url(method, options)
-    log("Request URL: #{request_url}")
     response = Net::HTTP.get_response(URI::parse(request_url))
     body = response.body
   end
