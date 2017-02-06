@@ -1,5 +1,6 @@
 # OpenBD
 
+[![Gem Version](https://badge.fury.io/rb/openbd_api.png)](https://badge.fury.io/rb/openbd_api)
 [![Build Status](https://travis-ci.org/nasum/openbd.svg?branch=master)](https://travis-ci.org/nasum/openbd)
 
 This gem wraps openBD Web API.
