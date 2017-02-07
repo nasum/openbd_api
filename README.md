@@ -1,6 +1,6 @@
 # OpenBD
 
-[![Gem Version](https://badge.fury.io/rb/openbd_api.png)](https://badge.fury.io/rb/openbd_api)
+[![Gem Version](https://badge.fury.io/rb/openbd_api.svg)](https://badge.fury.io/rb/openbd_api)
 [![Build Status](https://travis-ci.org/nasum/openbd.svg?branch=master)](https://travis-ci.org/nasum/openbd)
 
 This gem wraps openBD Web API.
@@ -23,6 +23,8 @@ Or install it yourself as:
 
 ## Usage
 
+### Library
+
 Like this.
 
 ```rb
@@ -43,6 +45,17 @@ OpenBD.coverage
 
 # schema
 OpenBD.schema
+```
+
+### CLI
+
+`openbd` executable calls `OpenBD` `s methods.
+
+```
+$ openbd get 9784309226712
+$ openbd bulk_get 9784309226712 9784309226729
+$ openbd coverage
+$ openbd schema
 ```
 
 ## Contributing
