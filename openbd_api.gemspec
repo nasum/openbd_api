@@ -9,16 +9,16 @@ Gem::Specification.new do |spec|
   spec.authors       = ["nasum"]
   spec.email         = ["tomato.wonder.life@gmail.com"]
 
-  spec.summary       = %q{openBD API written by Ruby.}
-  spec.description   = %q{openBD API written by Ruby.}
+  spec.summary       = %q{This gem wraps openBD Web API.}
+  spec.description   = %q{This gem wraps openBD Web API.}
   spec.homepage      = "https://github.com/nasum/openbd"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end
-  spec.bindir        = "exe"
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.bindir        = "bin"
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.14"
