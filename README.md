@@ -31,14 +31,18 @@ Like this.
 require 'openbd_api'
 
 # get
+OpenBD.get 9784309226712
 OpenBD.get '9784309226712'
 OpenBD.get '9784309226712,9784309226729'
 OpenBD.get [9784309226712,9784309226729]
+OpenBD.get ['9784309226712','9784309226729']
 
 # bulk_get
+OpenBD.bulk_get 9784309226712
 OpenBD.bulk_get '9784309226712'
 OpenBD.bulk_get '9784309226712,9784309226729'
 OpenBD.bulk_get [9784309226712,9784309226729]
+OpenBD.bulk_get ['9784309226712','9784309226729']
 
 # coverage
 OpenBD.coverage
