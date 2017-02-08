@@ -34,10 +34,14 @@ class OpenBD
     end
 
     def prepare_url(method, isbns = nil)
-      if isbns.kind_of? String
+      case isbns
+      when String
         params = normalize_isbns(isbns)
         "#{API_BASE_URL}#{method}?isbn=#{params}"
-      elsif isbns.kind_of? Array
+      when Numeric
+        params = normalize_isbns(isbns)
+        "#{API_BASE_URL}#{method}?isbn=#{params}"
+      when Array
         params = normalize_isbns(isbns)
         "#{API_BASE_URL}#{method}?isbn=#{params}"
       else
@@ -46,17 +50,18 @@ class OpenBD
     end
 
     def normalize_isbns(isbns)
-      params = ""
-      if isbns.kind_of? String
-        params << isbns
-      elsif isbns.kind_of? Array
+      case isbns
+      when String
+        isbns
+      when Numeric
+        isbns
+      when Array
+        params = ""
         isbns.each do |isbn|
           params << "#{isbn}, "
         end
-        params.strip!.gsub!(/,$/,'')
+        params.strip!.gsub(/,$/,'')
       end
-
-      params
     end
   end
 end
