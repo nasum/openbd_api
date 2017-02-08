@@ -56,6 +56,10 @@ $ openbd get 9784309226712
 $ openbd bulk_get 9784309226712 9784309226729
 $ openbd coverage
 $ openbd schema
+$ openbd --help
+Usage: openbd <method> [arguments] [options]
+    -v, --version  print the version
+    -h, --help     print help
 ```
 
 ## Contributing
