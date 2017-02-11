@@ -1,51 +1,49 @@
-require 'net/http'
+require 'faraday'
+require 'faraday_middleware'
 require 'json'
 
 class OpenBD
-  API_BASE_URL = 'http://api.openbd.jp/v1/'.freeze
+  API_BASE_URL = 'http://api.openbd.jp/'.freeze
+  PATH_TO_GET = 'v1/get'
+  PATH_TO_COVERAGE = 'v1/coverage'
+  PATH_TO_SCHEMA = 'v1/schema'
 
   class << self
     def get(isbns)
-      request_url = prepare_url('get', isbns)
-      response = Net::HTTP.get_response(URI::parse(request_url))
-      create_body(response).select { |item| item != nil }
+      response = get_request(PATH_TO_GET, { isbn: normalize_isbns(isbns) })
+      response.body
     end
 
     def bulk_get(isbns)
-      request_url = prepare_url('get')
-      response = Net::HTTP.post_form(URI::parse(request_url), isbn: normalize_isbns(isbns))
-      create_body(response).select { |item| item != nil }
+      response = post_request(PATH_TO_GET, { isbn: isbns })
+      response.body
     end
 
     def coverage
-      request_url = prepare_url('coverage')
-      response = Net::HTTP.get_response(URI::parse(request_url))
-      create_body(response)
+      response = get_request(PATH_TO_COVERAGE)
+      response.body
     end
 
     def schema
-      request_url = prepare_url('schema')
-      response = Net::HTTP.get_response(URI::parse(request_url))
-      create_body(response)
+      response = get_request(PATH_TO_SCHEMA)
+      response.body
     end
 
-    def create_body(response)
-      JSON.parse response.body
+    def connection
+      Faraday::Connection.new(url: API_BASE_URL) do |connection|
+        connection.adapter :net_http
+        connection.response :json
+      end
     end
 
-    def prepare_url(method, isbns = nil)
-      case isbns
-      when String
-        params = normalize_isbns(isbns)
-        "#{API_BASE_URL}#{method}?isbn=#{params}"
-      when Numeric
-        params = normalize_isbns(isbns)
-        "#{API_BASE_URL}#{method}?isbn=#{params}"
-      when Array
-        params = normalize_isbns(isbns)
-        "#{API_BASE_URL}#{method}?isbn=#{params}"
-      else
-        "#{API_BASE_URL}#{method}"
+    def get_request(method, params = nil)
+      faraday_response = connection.get(method, params)
+    end
+
+    def post_request(method, params)
+      faraday_response = connection.post do |req|
+        req.url method
+        req.body = "isbn=#{normalize_isbns(params[:isbn])}"
       end
     end
 
