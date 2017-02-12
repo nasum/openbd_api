@@ -5,7 +5,7 @@ require 'openbd/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "openbd_api"
-  spec.version       = Openbd::VERSION
+  spec.version       = OpenBD::VERSION
   spec.authors       = ["nasum"]
   spec.email         = ["tomato.wonder.life@gmail.com"]
 

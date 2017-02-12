@@ -3,5 +3,5 @@ $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 
 require 'openbd_api'
 
-openbd_cli = OpenbdCLI.new(ARGV)
+openbd_cli = ::OpenBD::OpenbdCLI.new(ARGV)
 openbd_cli.call

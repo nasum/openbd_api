@@ -1,43 +1,52 @@
-require 'faraday'
-require 'faraday_middleware'
-require 'json'
+module OpenBD
+  class Client
+    API_BASE_URL = 'http://api.openbd.jp/'.freeze
+    PATH_TO_GET = 'v1/get'
+    PATH_TO_COVERAGE = 'v1/coverage'
+    PATH_TO_SCHEMA = 'v1/schema'
 
-class OpenBD
-  API_BASE_URL = 'http://api.openbd.jp/'.freeze
-  PATH_TO_GET = 'v1/get'
-  PATH_TO_COVERAGE = 'v1/coverage'
-  PATH_TO_SCHEMA = 'v1/schema'
-
-  class << self
     def get(isbns)
-      response = get_request(PATH_TO_GET, { isbn: normalize_isbns(isbns) })
-      response.body
+      get_request(
+        method: PATH_TO_GET,
+        params: { isbn: normalize_isbns(isbns) },
+        response_class: ::OpenBD::Responses::Get
+      )
     end
 
     def bulk_get(isbns)
-      response = post_request(PATH_TO_GET, { isbn: isbns })
-      response.body
+      get_request(
+        method: PATH_TO_GET,
+        params: { isbn: normalize_isbns(isbns) },
+        response_class: ::OpenBD::Responses::Get
+      )
     end
 
     def coverage
-      response = get_request(PATH_TO_COVERAGE)
-      response.body
+      get_request(
+        method: PATH_TO_COVERAGE,
+        params: nil,
+        response_class: ::OpenBD::Responses::Coverage
+      )
     end
 
     def schema
-      response = get_request(PATH_TO_SCHEMA)
-      response.body
+      get_request(
+        method: PATH_TO_SCHEMA,
+        params: nil,
+        response_class: ::OpenBD::Responses::Schema
+      )
     end
 
     def connection
-      Faraday::Connection.new(url: API_BASE_URL) do |connection|
+      @connection ||= ::Faraday::Connection.new(url: API_BASE_URL) do |connection|
         connection.adapter :net_http
         connection.response :json
       end
     end
 
-    def get_request(method, params = nil)
+    def get_request(method:, params:, response_class:)
       faraday_response = connection.get(method, params)
+      response_class.new(faraday_response)
     end
 
     def post_request(method, params)

@@ -30,25 +30,28 @@ Like this.
 ```rb
 require 'openbd_api'
 
+# create instance
+client = OpenBD::Client.new
+
 # get
-OpenBD.get 9784309226712
-OpenBD.get '9784309226712'
-OpenBD.get '9784309226712,9784309226729'
-OpenBD.get [9784309226712,9784309226729]
-OpenBD.get ['9784309226712','9784309226729']
+client.get 9784309226712
+client.get '9784309226712'
+client.get '9784309226712,9784309226729'
+client.get [9784309226712,9784309226729]
+client.get ['9784309226712','9784309226729']
 
 # bulk_get
-OpenBD.bulk_get 9784309226712
-OpenBD.bulk_get '9784309226712'
-OpenBD.bulk_get '9784309226712,9784309226729'
-OpenBD.bulk_get [9784309226712,9784309226729]
-OpenBD.bulk_get ['9784309226712','9784309226729']
+client.bulk_get 9784309226712
+client.bulk_get '9784309226712'
+client.bulk_get '9784309226712,9784309226729'
+client.bulk_get [9784309226712,9784309226729]
+client.bulk_get ['9784309226712','9784309226729']
 
 # coverage
-OpenBD.coverage
+client.coverage
 
 # schema
-OpenBD.schema
+client.schema
 ```
 
 ### CLI

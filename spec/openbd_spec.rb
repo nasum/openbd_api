@@ -1,7 +1,7 @@
 require "spec_helper"
 
-RSpec.describe Openbd do
+RSpec.describe OpenBD do
   it "has a version number" do
-    expect(Openbd::VERSION).not_to be nil
+    expect(OpenBD::VERSION).not_to be nil
   end
 end
