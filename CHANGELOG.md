@@ -1,3 +1,7 @@
+## 0.4.1
+
+- fix require
+
 ## 0.4.0
 
 - Change Architecture. need to create `Client` instance.
