@@ -61,13 +61,9 @@ module OpenBD
       when String
         isbns
       when Numeric
-        isbns
+        isbns.to_s
       when Array
-        params = ""
-        isbns.each do |isbn|
-          params << "#{isbn}, "
-        end
-        params.strip!.gsub(/,$/,'')
+        isbns.join(",")
       end
     end
   end
