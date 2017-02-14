@@ -1,3 +1,8 @@
+## 0.4.2
+
+- add specs of OpenBD::Client#normalize_isbns
+- make Client#normalize_isbns return String of Numbers (and `,` if needed) 
+
 ## 0.4.1
 
 - fix require
