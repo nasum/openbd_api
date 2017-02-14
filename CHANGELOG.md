@@ -1,7 +1,12 @@
+## 0.4.3
+
+- add OpenBD::Client specs for #get, #bulk_get, and #coverage
+- bulk_get should use POST method
+
 ## 0.4.2
 
 - add specs of OpenBD::Client#normalize_isbns
-- make Client#normalize_isbns return String of Numbers (and `,` if needed) 
+- make Client#normalize_isbns return String of Numbers (and `,` if needed)
 
 ## 0.4.1
 
