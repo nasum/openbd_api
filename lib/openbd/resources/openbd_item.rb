@@ -3,21 +3,21 @@ module OpenBD
     class OpenbdItem < BaseResource
       def initialize(source)
         @source = source
-        @hanmoto = ::OpenBD::Resources::Hanmoto.new(source['hanmoto'])
-        @onix = ::OpenBD::Resources::Onix.new(source['onix'])
-        @summary = ::OpenBD::Resources::Summary.new(source['summary'])
+        @hanmoto = nil
+        @onix = nil
+        @summary = nil
       end
 
       def onix
-        @onix
+        @onix ||= ::OpenBD::Resources::Onix.new(source['onix'])
       end
 
       def hanmoto
-        @hanmoto
+        @hanmoto ||= ::OpenBD::Resources::Hanmoto.new(source['hanmoto'])
       end
 
       def summary
-        @summary
+        @summary ||= ::OpenBD::Resources::Summary.new(source['summary'])
       end
     end
   end
