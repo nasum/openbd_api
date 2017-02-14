@@ -5,6 +5,11 @@ module OpenBD
     PATH_TO_COVERAGE = 'v1/coverage'
     PATH_TO_SCHEMA = 'v1/schema'
 
+    def initialize(adapter: :net_http, response_parser: :json)
+      @adapter = adapter
+      @response_parser = response_parser
+    end
+
     def get(isbns)
       get_request(
         method: PATH_TO_GET,
@@ -39,8 +44,8 @@ module OpenBD
 
     def connection
       @connection ||= ::Faraday::Connection.new(url: API_BASE_URL) do |connection|
-        connection.adapter :net_http
-        connection.response :json
+        connection.adapter @adapter
+        connection.response @response_parser
       end
     end
 
