@@ -29,13 +29,13 @@ module OpenBD
 
     def parse_option
       @opts = ::Slop.parse do |o|
-        o.banner = <<~EOB
-          Usage: openbd <method> [arguments] [options]
+        o.banner = <<-EOB
+Usage: openbd <method> [arguments] [options]
 
-          Supported <method>:
-            get       Find book data by ISBN(s)
-            coverage  Show all ISBNs in openBD
-            schema    Show the JSON Schema of openBD
+Supported <method>:
+  get       Find book data by ISBN(s)
+  coverage  Show all ISBNs in openBD
+  schema    Show the JSON Schema of openBD
         EOB
         o.on '-v', '--version', 'print the version' do
           puts "openbd_api #{OpenBD::VERSION}"
