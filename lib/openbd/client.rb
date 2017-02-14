@@ -14,7 +14,7 @@ module OpenBD
     end
 
     def bulk_get(isbns)
-      get_request(
+      post_request(
         method: PATH_TO_GET,
         params: { isbn: normalize_isbns(isbns) },
         response_class: ::OpenBD::Responses::Get
@@ -49,11 +49,12 @@ module OpenBD
       response_class.new(faraday_response)
     end
 
-    def post_request(method, params)
+    def post_request(method:, params:, response_class:)
       faraday_response = connection.post do |req|
         req.url method
         req.body = "isbn=#{normalize_isbns(params[:isbn])}"
       end
+      response_class.new(faraday_response)
     end
 
     def normalize_isbns(isbns)

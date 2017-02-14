@@ -52,7 +52,7 @@ RSpec.describe OpenBD::Client do
     let!(:stub_connection) do
       Faraday.new do |conn|
         conn.adapter :test, Faraday::Adapter::Test::Stubs.new do |stub|
-          stub.get("/v1/get?isbn=9784797336610") do
+          stub.post("/v1/get", "isbn=9784797336610") do
             [200, {}, sample_book_data]
           end
         end
