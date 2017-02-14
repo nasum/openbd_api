@@ -34,6 +34,7 @@ Usage: openbd <method> [arguments] [options]
 
 Supported <method>:
   get       Find book data by ISBN(s)
+  bulk_get  Find book data by ISBN(s)
   coverage  Show all ISBNs in openBD
   schema    Show the JSON Schema of openBD
         EOB
