@@ -91,5 +91,10 @@ RSpec.describe OpenBD::Client do
       expect(res).to be_kind_of OpenBD::Responses::Coverage
       expect(res.body).to be == coverages
     end
+
+    it "has a method size()" do
+      res = client.coverage
+      expect(res.size).to be == 5
+    end
   end
 end
