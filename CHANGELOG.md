@@ -1,3 +1,10 @@
+## 0.4.4
+
+- OpenBD::Client.new: enable to define adapter and respnose parser
+- add specs of OpenBD::Resources::OpenbdItem
+- OpenBD::Resources::OpenbdItem.new: delay to generate objects
+- add sample
+
 ## 0.4.3
 
 - add OpenBD::Client specs for #get, #bulk_get, and #coverage
