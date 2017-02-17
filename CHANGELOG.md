@@ -1,3 +1,9 @@
+## 0.4.5
+
+- normalize_isbns() should be used only once
+- add a spec of bulk_get with multiple isbns
+- add OpenBD::Responses::Coverage#size
+
 ## 0.4.4
 
 - OpenBD::Client.new: enable to define adapter and respnose parser
