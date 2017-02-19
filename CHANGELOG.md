@@ -1,3 +1,12 @@
+## 0.5.0
+
+- Add `OpenBD::Resources::Onix::CollateralDetail`
+- Add `OpenBD::Resources::Onix::Contributor`
+- Add `OpenBD::Resources::Onix::DescriptiveDetail`
+- Add `OpenBD::Resources::Onix::ProductSupply`
+- Add `OpenBD::Resources::Onix::Publisher`
+- Add `OpenBD::Resources::Onix::PublishingDetail`
+
 ## 0.4.5
 
 - normalize_isbns() should be used only once
