@@ -24,14 +24,14 @@ module OpenBD
         # Product image / Artwork (付録、商品イメージ)
         attr_reader :image
 
-        def initialize(source)
+        def initialize(src)
           super
           @short_description = nil
           @description = nil
           @toc = nil
           @cover = []
           @image = []
-          parse(source)
+          parse(src)
         end
 
         def parse(cd)

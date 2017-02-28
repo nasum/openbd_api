@@ -14,35 +14,35 @@ RSpec.describe OpenBD::Resources::OpenbdItem do
 
   describe "#onix" do
     it "has an ISBN in RecordReference" do
-      expect(item.onix.source["RecordReference"]).to be == "9784797357400"
+      expect(item.onix.src["RecordReference"]).to be == "9784797357400"
     end
 
     it "has a URL of cover" do
-      expect(item.onix.source["CollateralDetail"]["SupportingResource"][0]["ResourceVersion"][0]["ResourceLink"]).to be == "https://cover.openbd.jp/9784797357400.jpg"
+      expect(item.onix.src["CollateralDetail"]["SupportingResource"][0]["ResourceVersion"][0]["ResourceLink"]).to be == "https://cover.openbd.jp/9784797357400.jpg"
     end
 
       it "has a title" do
-      expect(item.onix.source["DescriptiveDetail"]["TitleDetail"]["TitleElement"]["TitleText"]["content"]).to be == "たのしいRuby"
+      expect(item.onix.src["DescriptiveDetail"]["TitleDetail"]["TitleElement"]["TitleText"]["content"]).to be == "たのしいRuby"
     end
 end
 
   describe "#hanmoto" do
     it "has pubdate as dateshuppan" do
-      expect(item.hanmoto.source["dateshuppan"]).to be == "2010-04"
+      expect(item.hanmoto.src["dateshuppan"]).to be == "2010-04"
     end
   end
 
   describe "#summary" do
     it "has pubdate" do
-      expect(item.summary.source["pubdate"]).to be == "2010-04"
+      expect(item.summary.src["pubdate"]).to be == "2010-04"
     end
 
     it "has an ISBN" do
-      expect(item.summary.source["isbn"]).to be == "9784797357400"
+      expect(item.summary.src["isbn"]).to be == "9784797357400"
     end
 
     it "has a title" do
-      expect(item.summary.source["title"]).to be == "たのしいRuby"
+      expect(item.summary.src["title"]).to be == "たのしいRuby"
     end
   end
 end

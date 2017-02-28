@@ -95,7 +95,7 @@ module OpenBD
         # https://onix-codelists.io/codelist/203
         attr_reader :onix_adult_audience_rating
 
-        def initialize(source)
+        def initialize(src)
           super
           @product_composition = nil
           @product_form = nil
@@ -121,7 +121,7 @@ module OpenBD
           @genre_code = nil
           @jp_childrens_audience_code = nil
           @onix_adult_audience_rating = nil
-          parse(source)
+          parse(src)
         end
 
         def parse(dd)

@@ -1,10 +1,10 @@
 module OpenBD
   module Resources
     class BaseResource
-      attr_reader :source
+      attr_reader :src
 
-      def initialize(source)
-        @source = source
+      def initialize(src)
+        @src = src
       end
     end
   end

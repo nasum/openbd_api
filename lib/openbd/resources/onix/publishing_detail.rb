@@ -33,7 +33,7 @@ module OpenBD
         # @return [String]
         attr_reader :publishers_reservation_order_deadline
 
-        def initialize(source)
+        def initialize(src)
           super
           @imprint = nil
           @publisher = nil
@@ -41,7 +41,7 @@ module OpenBD
           @publishing_embargo_date = nil
           @public_announcement_date = nil
           @publishers_reservation_order_deadline = nil
-          parse(source)
+          parse(src)
         end
 
         def parse(pd)
