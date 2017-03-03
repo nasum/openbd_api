@@ -111,9 +111,9 @@ module OpenBD
         "06" => "成人向け（言語）",
       }
 
-      def initialize(source)
+      def initialize(src)
         super
-        @record_reference = source["RecordReference"] ## ISBN
+        @record_reference = src["RecordReference"] ## ISBN
         @descriptive_detail = nil
         @collateral_detail = nil
         @publishing_detail = nil
@@ -121,19 +121,19 @@ module OpenBD
       end
 
       def descriptive_detail
-        @descriptive_detail ||= OpenBD::Resources::Onix::DescriptiveDetail.new(source["DescriptiveDetail"])
+        @descriptive_detail ||= OpenBD::Resources::Onix::DescriptiveDetail.new(src["DescriptiveDetail"])
       end
 
       def collateral_detail
-        @collateral_detail ||= OpenBD::Resources::Onix::CollateralDetail.new(source["CollateralDetail"])
+        @collateral_detail ||= OpenBD::Resources::Onix::CollateralDetail.new(src["CollateralDetail"])
       end
 
       def publishing_detail
-        @publishing_detail ||= OpenBD::Resources::Onix::PublishingDetail.new(source["PublishingDetail"])
+        @publishing_detail ||= OpenBD::Resources::Onix::PublishingDetail.new(src["PublishingDetail"])
       end
 
       def product_supply
-        @product_supply ||= OpenBD::Resources::Onix::ProductSupply.new(source["ProductSupply"])
+        @product_supply ||= OpenBD::Resources::Onix::ProductSupply.new(src["ProductSupply"])
       end
     end
   end

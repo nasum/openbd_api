@@ -2,35 +2,35 @@ module OpenBD
   module Resources
     class Summary < BaseResource
       def isbn
-        source['isbn']
+        src['isbn']
       end
 
       def title
-        source['title']
+        src['title']
       end
 
       def volume
-        source['volume']
+        src['volume']
       end
 
       def series
-        source['series']
+        src['series']
       end
 
       def publisher
-        source['publisher']
+        src['publisher']
       end
 
       def pubdate
-        source['pubdate']
+        src['pubdate']
       end
 
       def cover
-        source['cover']
+        src['cover']
       end
 
       def author
-        source['author']
+        src['author']
       end
     end
   end

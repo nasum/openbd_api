@@ -27,14 +27,14 @@ module OpenBD
         # Special Price Until Date (特価終了日)
         attr_reader :special_price_until_date
 
-        def initialize(source)
+        def initialize(src)
           super
           @returns_conditions_code = nil
           @price = nil
           @special_price = nil
           @special_price_from_date = nil
           @special_price_until_date = nil
-          parse(source)
+          parse(src)
         end
 
         def parse(ps)

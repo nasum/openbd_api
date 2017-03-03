@@ -26,13 +26,13 @@ module OpenBD
         # Biographical Note (著者略歴)
         attr_reader :biographical_note
 
-        def initialize(source)
+        def initialize(src)
           super
-          @role = source["ContributorRole"]
-          @name = source["PersonName"]["content"] rescue nil
-          @name_collationkey = source["PersonName"]["collationkey"] rescue nil
-          @seqence_number = source["SequenceNumber"]
-          @biographical_note = source["BiographicalNote"]
+          @role = src["ContributorRole"]
+          @name = src["PersonName"]["content"] rescue nil
+          @name_collationkey = src["PersonName"]["collationkey"] rescue nil
+          @seqence_number = src["SequenceNumber"]
+          @biographical_note = src["BiographicalNote"]
         end
       end
     end
