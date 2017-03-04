@@ -1,3 +1,7 @@
+## 0.5.1
+
+- replace BaseResource.source to BaseResource.src
+
 ## 0.5.0
 
 - Add `OpenBD::Resources::Onix::CollateralDetail`
