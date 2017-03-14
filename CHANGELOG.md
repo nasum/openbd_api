@@ -1,3 +1,9 @@
+## 0.6.0
+	
+- Support many methods of OpenBD::Resources::Hanmoto
+- Add `OpenBD::Resources::Hanmoto::Jyuhan`
+- Add `OpenBD::Resources::Hanmoto::Review`
+
 ## 0.5.1
 
 - replace BaseResource.source to BaseResource.src
