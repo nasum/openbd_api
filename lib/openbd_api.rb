@@ -4,6 +4,8 @@ require 'slop'
 
 require 'openbd/resources/base_resource'
 require 'openbd/resources/hanmoto'
+require 'openbd/resources/hanmoto/jyuhan'
+require 'openbd/resources/hanmoto/review'
 require 'openbd/resources/onix'
 require 'openbd/resources/onix/contributor'
 require 'openbd/resources/onix/collateral_detail'
