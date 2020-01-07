@@ -27,6 +27,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_runtime_dependency "slop", "~> 4.4"
-  spec.add_runtime_dependency "faraday", "~> 0.11"
+  spec.add_runtime_dependency "faraday", ">= 0.11", "< 2.0"
   spec.add_runtime_dependency "faraday_middleware", "~> 0.11"
 end
